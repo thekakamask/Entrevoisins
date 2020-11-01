@@ -99,6 +99,17 @@
             android:layout_marginTop="20dp"
             android:text="Save"/>
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/favoriteButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:backgroundTint="#C1D1DD"
+            android:src="@drawable/baseline_star_rate_24"
+            app:layout_anchor="@id/avatarUrlImageView"
+            app:layout_anchorGravity="bottom|right|end"/>
+
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

@@ -38,23 +38,22 @@ public class Neighbour {
      * @param avatarUrl
      */
     public Neighbour(long id, String name, String avatarUrl, String address,
-                     String phoneNumber, String aboutMe) {
+                     String phoneNumber, String aboutMe, Boolean favoris) {
         this.id = id;
         this.name = name;
         this.avatarUrl = avatarUrl;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.aboutMe = aboutMe;
-        //this.favoris = false;
-        //this.neighbourFace = neighbourFace;
+        this.favoris = false;
     }
 
-    //public boolean getFavoris() {
-    //    return favoris;
-    //}
-   // public void setFavoris(boolean favoris) {
-   //     this.favoris = favoris;
-   // }
+    public boolean getFavoris() {
+        return favoris;
+    }
+    public void setFavoris(boolean favoris) {
+        this.favoris = favoris;
+    }
 
     public long getId() {
         return id;

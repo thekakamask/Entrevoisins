@@ -15,14 +15,14 @@ public interface NeighbourApiService {
      * @return {@link List}
      */
     List<Neighbour> getNeighbours();
-    List<Neighbour> getFavNeighbours();
+    //List<Neighbour> getFavNeighbours();
 
     /**
      * Deletes a neighbour
      * @param neighbour
      */
     void deleteNeighbour(Neighbour neighbour);
-    void deleteFavNeighbour(Neighbour neighbour);
+    //void deleteFavNeighbour(Neighbour neighbour);
 
     /**
      * Create a neighbour
@@ -36,7 +36,9 @@ public interface NeighbourApiService {
 
     //void removeNeighbourFavoris(Neighbour neighbour);
 
-    //Boolean isFavoris(Neighbour neighbour);
+    void changeNeighbourFavoris(Neighbour neighbour);
+
+    void deleteFavNeighbour(Neighbour neighbour);
 
     //List<Neighbour> getFavorisNeighbours();
 }

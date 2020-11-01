@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
@@ -58,7 +59,8 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
     public Drawable mBaselineLang;
     @BindDrawable(R.drawable.baseline_star_rate_24)
     public Drawable mBaselineStar;
-
+    @BindDrawable(R.drawable.baseline_star_border_black_24dp)
+    public Drawable mBaselineStarBorder;
 
 
     private NeighbourApiService mApiService;
@@ -78,6 +80,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
         mApiService = DI.getNeighbourApiService();
         getNeighbour();
         configureInfosCard();
+        configureFavButton();
         // A FAIRE RECUPERATION DE L'ID DU VOISIN SELECTIONNE A PARTIR DE L'INTENT
         // A FAIRE RECUPERER LES AUTRES INFORMATIONS DU VOISIN A PARTIR DE SON ID
         // AFFICHER LES INFOS DU VOISINS SUR LES COMPOSANTS GRAPHIQUES DE L'ACTIVITE
@@ -90,9 +93,9 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
     }
 
     //private void configureToolbar() {
-      //  Glide.with(this).load(mNeighbour.getAvatarUrl()).into(mNeighbourAvatar);
-       // mToolbarTextView.setText(mNeighbour.getName());
-        //mToolbarButton.setOnClickListener(v -> finish());
+    //  Glide.with(this).load(mNeighbour.getAvatarUrl()).into(mNeighbourAvatar);
+    // mToolbarTextView.setText(mNeighbour.getName());
+    //mToolbarButton.setOnClickListener(v -> finish());
 
     //}
 
@@ -103,9 +106,22 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
         phoneNumberTextView.setText(mNeighbour.getPhoneNumber());
         internetSiteTextView.setText(mNeighbour.getAvatarUrl());
         aboutMeTextView.setText(mNeighbour.getAboutMe());
+        Glide.with(this).load(mNeighbour.getAvatarUrl()).into(avatarUrlImageView);
+        //Glide.with(this).load(mNeighbour.getAvatarUrl()).into();
+    }
 
+    private void configureFavButton() {
+        if (mNeighbour.getFavoris() == true) {
+            mFavoriteButton.setImageDrawable(mBaselineStar);
+        } else {
+            mFavoriteButton.setImageDrawable(mBaselineStarBorder);
+        }
 
-
+        mFavoriteButton.setOnClickListener(v -> {
+            mApiService.changeNeighbourFavoris(mNeighbour);
+            mNeighbour.setFavoris(!mNeighbour.getFavoris());
+            configureFavButton();
+        });
 
     }
 

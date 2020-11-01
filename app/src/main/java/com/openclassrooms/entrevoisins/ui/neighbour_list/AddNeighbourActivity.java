@@ -37,6 +37,8 @@ public class AddNeighbourActivity extends AppCompatActivity {
     TextInputLayout aboutMeInput;
     @BindView(R.id.create)
     MaterialButton addButton;
+    @BindView(R.id.favoriteButton1)
+    public android.support.design.widget.FloatingActionButton favoriteButton1;
 
     private NeighbourApiService mApiService;
     private String mNeighbourImage;
@@ -87,8 +89,11 @@ public class AddNeighbourActivity extends AppCompatActivity {
                 "https://i.pravatar.cc/150?u=a042581f4e29026704d",
                 addressInput.getEditText().getText().toString(),
                 phoneInput.getEditText().getText().toString(),
-                aboutMeInput.getEditText().getText().toString()
-        );
+                aboutMeInput.getEditText().getText().toString(),
+                favoriteButton1.onTouchEvent()
+                
+
+                );
         mApiService.createNeighbour(neighbour);
         finish();
     }

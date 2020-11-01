@@ -20,7 +20,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     public List<Neighbour> getNeighbours() {
         return neighbours;
     }
-    public List<Neighbour> getFavNeighbours() { return favNeighbours; }
+    //public List<Neighbour> getFavNeighbours() { return favNeighbours; }
 
     /**
      * {@inheritDoc}
@@ -29,7 +29,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     public void deleteNeighbour(Neighbour neighbour) {
         neighbours.remove(neighbour);
     }
-    public void deleteFavNeighbour(Neighbour neighbour) {favNeighbours.remove(neighbour); }
+    //public void deleteFavNeighbour(Neighbour neighbour) {favNeighbours.remove(neighbour); }
 
     /**
      * {@inheritDoc}
@@ -44,6 +44,16 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     @Override
     public Neighbour getNeighbourByPosition(int position) {
         return neighbours.get(position);
+    }
+
+    @Override
+    public void changeNeighbourFavoris(Neighbour neighbour) {
+        neighbours.get(neighbours.indexOf(neighbour)).setFavoris(!neighbour.getFavoris());
+    }
+
+    @Override
+    public void deleteFavNeighbour(Neighbour neighbour) {
+
     }
 
 
