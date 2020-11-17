@@ -9,6 +9,7 @@ import android.support.v7.widget.CardView;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
@@ -20,6 +21,7 @@ import butterknife.BindDimen;
 import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DetailsNeighbourActivity extends AppCompatActivity {
 
@@ -81,6 +83,14 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
         getNeighbour();
         configureInfosCard();
         configureFavButton();
+        
+        //clickFavButton();
+        /*mFavoriteButton.setOnClickListener(v -> {
+            mApiService.changeNeighbourFavoris(mNeighbour);
+            mNeighbour.setFavoris(!mNeighbour.getFavoris());
+            configureFavButton();
+        });*/
+
         // A FAIRE RECUPERATION DE L'ID DU VOISIN SELECTIONNE A PARTIR DE L'INTENT
         // A FAIRE RECUPERER LES AUTRES INFORMATIONS DU VOISIN A PARTIR DE SON ID
         // AFFICHER LES INFOS DU VOISINS SUR LES COMPOSANTS GRAPHIQUES DE L'ACTIVITE
@@ -111,18 +121,28 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
     }
 
     private void configureFavButton() {
-        if (mNeighbour.getFavoris() == true) {
-            mFavoriteButton.setImageDrawable(mBaselineStar);
+        if (mNeighbour.getFavoris()) {
+            mFavoriteButton.setImageResource(R.drawable.baseline_star_rate_24);
         } else {
-            mFavoriteButton.setImageDrawable(mBaselineStarBorder);
+            mFavoriteButton.setImageResource(R.drawable.baseline_star_border_black_24dp);
         }
-
-        mFavoriteButton.setOnClickListener(v -> {
-            mApiService.changeNeighbourFavoris(mNeighbour);
-            mNeighbour.setFavoris(!mNeighbour.getFavoris());
-            configureFavButton();
-        });
-
     }
+
+    @OnClick (R.id.favoriteButton)
+    public void clickFavButton() {
+
+        if (mNeighbour.getFavoris()) {
+            mApiService.deleteNeighbour(mNeighbour);
+            mNeighbour.setFavoris(false);
+            mApiService.createNeighbour(mNeighbour);
+        } else  {
+            mApiService.deleteNeighbour(mNeighbour);
+            mNeighbour.setFavoris(true);
+            mApiService.createNeighbour(mNeighbour);
+        }
+        configureFavButton();
+        //Toast.makeText(getApplicationContext(), "clique sur el bouton favoris", Toast.LENGTH_SHORT).show();
+    }
+
 
 }

@@ -22,11 +22,12 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.Arrays;
 import java.util.List;
 
+import java.util.List;
 
-public class NeighbourFragment extends Fragment {
+public class FavoriteNeighbourFragment extends Fragment {
 
     private NeighbourApiService mApiService;
-    private List<Neighbour> mNeighbours;
+    private List<Neighbour> mNeighboursFav;
     private RecyclerView mRecyclerView;
     private Context mContext;
 
@@ -35,8 +36,8 @@ public class NeighbourFragment extends Fragment {
      * Create and return a new instance
      * @return @{@link NeighbourFragment}
      */
-    public static NeighbourFragment newInstance() {
-        NeighbourFragment fragment = new NeighbourFragment();
+    public static FavoriteNeighbourFragment newInstance() {
+        FavoriteNeighbourFragment fragment = new FavoriteNeighbourFragment();
         return fragment;
     }
 
@@ -49,7 +50,7 @@ public class NeighbourFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
+        View view = inflater.inflate(R.layout.activity_favorite_neighbour_fragment, container, false);
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -61,23 +62,10 @@ public class NeighbourFragment extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
+        mNeighboursFav = mApiService.getFavoriteNeighbours();
 
-        // A RENTRER DANS LE FRAGMENT FAVORIS AU DESSOUS
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighboursFav));
 
-       /* List<Neighbour> FAV_NEIGHBOURS = Arrays.asList();
-        for (Neighbour n: mNeighbours
-             ) {
-            if (n.getFavoris()) {
-                FAV_NEIGHBOURS.add(n);
-            }
-
-        }
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(FAV_NEIGHBOURS));*/
-
-        // A RENTRER DANS LE FRAGMENT FAVORIS AU DESSUS
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
-        //probleme avec le context qui ne passe pas
     }
 
     @Override
@@ -108,4 +96,7 @@ public class NeighbourFragment extends Fragment {
         //mApiService.deleteFavNeighbour(event.neighbour);
         initList();
     }
+
+
+
 }

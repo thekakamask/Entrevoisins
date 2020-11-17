@@ -1,6 +1,7 @@
 package com.openclassrooms.entrevoisins.service;
 
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.ui.neighbour_list.FavoriteNeighbourFragment;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ public interface NeighbourApiService {
      */
     List<Neighbour> getNeighbours();
     //List<Neighbour> getFavNeighbours();
+
+    List<Neighbour> getFavoriteNeighbours();
 
     /**
      * Deletes a neighbour
@@ -36,9 +39,9 @@ public interface NeighbourApiService {
 
     //void removeNeighbourFavoris(Neighbour neighbour);
 
-    void changeNeighbourFavoris(Neighbour neighbour);
+    //Void addNeighbourFavoris(Neighbour neighbour);
 
-    void deleteFavNeighbour(Neighbour neighbour);
+    //void deleteFavNeighbour(Neighbour neighbour);
 
     //List<Neighbour> getFavorisNeighbours();
 }

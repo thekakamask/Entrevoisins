@@ -45,7 +45,7 @@ public class Neighbour {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.aboutMe = aboutMe;
-        this.favoris = false;
+        this.favoris = favoris;
     }
 
     public boolean getFavoris() {
