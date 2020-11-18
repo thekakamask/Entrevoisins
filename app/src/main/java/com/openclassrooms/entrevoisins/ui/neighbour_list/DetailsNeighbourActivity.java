@@ -23,6 +23,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/*ICI NOUS AJOUTONS DONC LA FONCTIONNALITE DETAIL
+* L'ACTIVITE DETAILNEIGHBOUR EST COMPOSE DE SA CLASSE ET DE SON FICHIER XML JOINT (XML = COMPOSANT GRAPHIQUE
+* ON CREER DONC VISUELLEMENT AVEC L'XML L'ACTIVITE
+* AVEC LA METHODE BINDVIEW ON LIE DONC LES ELEMENTS DU FICHIER XML AVEC NOTRE CLASSE JAVA DETAILSNEIGHBOUR
+* CHAQUE ELEMENT EST LIE GRACE A SON ID AINSI QUE LES IMAGES FIXES*/
+
 public class DetailsNeighbourActivity extends AppCompatActivity {
 
     // BIND DES ELEMENTS DE L'XML
@@ -69,10 +75,16 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
     private String mNeighbourImage;
     private Neighbour mNeighbour;
 
-    // AJOUTER LE BOUTON DE
-    //FAVORI SUR L'ACTIVITE ID
 
 
+    // LE ON CREATE NOUS PERMET DE FIXER NOTRE FICHIER XML
+    //ON LIE LE FICHIER XML EN LUI MEME , ON ACTIVE LE BIND DES ELEMENTS DE L'XML
+    // ON PROCEDE A L'INJECTION DE l'API
+    // LA METHODE SUIVANTE PERMET DE RECUPERER L'INTENT QUI VIENT DE L'ACTIVITE PRINCIPAL
+    // ON RECUPERE NOTRE VOISIN PAR SA POSITION
+    // LA METHODE SUIVANTE NOUS PERMET D'IMPLEMENTER LES DIFFERENTES CARACTERISTIQUES DU VOISINS
+    // LA SUIVANTE PERMET DE CONFIGURER L'IMAGE DU BOUTON FAVORI EN FONCTION DE SI LE VOISIN EST FAVORI OU NON
+    // PUIS LA DERNIERE PERMET DE CLIQUER SUR LE BOUTON POUR CHANGER LE STATUT DE FAVORIS DU VOISIN
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,17 +95,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
         getNeighbour();
         configureInfosCard();
         configureFavButton();
-        
-        //clickFavButton();
-        /*mFavoriteButton.setOnClickListener(v -> {
-            mApiService.changeNeighbourFavoris(mNeighbour);
-            mNeighbour.setFavoris(!mNeighbour.getFavoris());
-            configureFavButton();
-        });*/
 
-        // A FAIRE RECUPERATION DE L'ID DU VOISIN SELECTIONNE A PARTIR DE L'INTENT
-        // A FAIRE RECUPERER LES AUTRES INFORMATIONS DU VOISIN A PARTIR DE SON ID
-        // AFFICHER LES INFOS DU VOISINS SUR LES COMPOSANTS GRAPHIQUES DE L'ACTIVITE
     }
 
     private void getNeighbour() {
@@ -102,12 +104,6 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
         mNeighbour = mApiService.getNeighbourByPosition(position);
     }
 
-    //private void configureToolbar() {
-    //  Glide.with(this).load(mNeighbour.getAvatarUrl()).into(mNeighbourAvatar);
-    // mToolbarTextView.setText(mNeighbour.getName());
-    //mToolbarButton.setOnClickListener(v -> finish());
-
-    //}
 
     private void configureInfosCard() {
         nameTextView.setText(mNeighbour.getName());
@@ -117,7 +113,6 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
         internetSiteTextView.setText(mNeighbour.getAvatarUrl());
         aboutMeTextView.setText(mNeighbour.getAboutMe());
         Glide.with(this).load(mNeighbour.getAvatarUrl()).into(avatarUrlImageView);
-        //Glide.with(this).load(mNeighbour.getAvatarUrl()).into();
     }
 
     private void configureFavButton() {
@@ -141,7 +136,6 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
             mApiService.createNeighbour(mNeighbour);
         }
         configureFavButton();
-        //Toast.makeText(getApplicationContext(), "clique sur el bouton favoris", Toast.LENGTH_SHORT).show();
     }
 
 

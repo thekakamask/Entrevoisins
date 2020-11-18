@@ -7,11 +7,12 @@ import java.util.List;
 
 /**
  * Dummy mock for the Api
+ * ON A DEFINIT LA METHODE PERMETTANT DE RECUPERER LA LISTE FAVORIS ICI
+ * CETTE METHODE PERMET DE VERIFIER LES VOISINS ETANT FAVORIS ET DE LES AJOUTER A LA LISTE DE FAVORIS
  */
 public class DummyNeighbourApiService implements  NeighbourApiService {
 
     private List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
-    //private List<Neighbour> favNeighbours = DummyNeighbourGenerator.FAV_NEIGHBOURS;
 
 
     /**

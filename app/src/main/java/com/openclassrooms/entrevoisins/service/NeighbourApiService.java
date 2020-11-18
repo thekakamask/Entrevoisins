@@ -14,6 +14,7 @@ public interface NeighbourApiService {
     /**
      * Get all my Neighbours
      * @return {@link List}
+     * ON RAJOUTE LA METHODE PERMETTANT DE RECUPERER LA LISTE FAVORIS A L'INTERFACE QUE LON DEFINIT DANS LA CLASSE DUMMYNEIGHBOURAPISERVICE
      */
     List<Neighbour> getNeighbours();
     //List<Neighbour> getFavNeighbours();

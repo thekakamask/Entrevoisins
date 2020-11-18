@@ -62,22 +62,7 @@ public class NeighbourFragment extends Fragment {
      */
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
-
-        // A RENTRER DANS LE FRAGMENT FAVORIS AU DESSOUS
-
-       /* List<Neighbour> FAV_NEIGHBOURS = Arrays.asList();
-        for (Neighbour n: mNeighbours
-             ) {
-            if (n.getFavoris()) {
-                FAV_NEIGHBOURS.add(n);
-            }
-
-        }
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(FAV_NEIGHBOURS));*/
-
-        // A RENTRER DANS LE FRAGMENT FAVORIS AU DESSUS
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
-        //probleme avec le context qui ne passe pas
     }
 
     @Override
@@ -105,7 +90,6 @@ public class NeighbourFragment extends Fragment {
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
         mApiService.deleteNeighbour(event.neighbour);
-        //mApiService.deleteFavNeighbour(event.neighbour);
         initList();
     }
 }

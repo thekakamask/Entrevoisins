@@ -4,6 +4,8 @@ import java.util.Objects;
 
 /**
  * Model object representing a Neighbour
+ * ON RAJOUTE UNE CARACTERISTIQUE AU MODELE DE VOISIN QUI EST SI IL EST FAVORIS OU NON
+ * AVEC LES METHODES NECESSAIRE : INSTANCIATION , GET AND SET
  */
 public class Neighbour {
 
@@ -26,10 +28,6 @@ public class Neighbour {
     private String aboutMe;
 
     private boolean favoris;
-    // A FAIRE GENERER LES GETTER ET SETTER (false valeur de base et true si il est favori) = FAIT
-
-    // DECLARE LES IMAGES DES VOISINS
-    //private int neighbourFace;
 
     /**
      * Constructor

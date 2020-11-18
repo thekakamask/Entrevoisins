@@ -81,6 +81,10 @@ public class AddNeighbourActivity extends AppCompatActivity {
 
     }
 
+
+    // NOUS AVONS RAJOUTER A LA METHODE PERMETTANT D'AJOUTER UN VOISIN UNE NOUVELLE CARACTERISTIQUE
+    // CELLE QUE NOUS AVONS RAJOUTER AU MODELE VOISIN; LES VOISINS AJOUTE NE SONT DE BASE
+    // PAS FAVORIS
     @OnClick(R.id.create)
     void addNeighbour() {
         Neighbour neighbour = new Neighbour(

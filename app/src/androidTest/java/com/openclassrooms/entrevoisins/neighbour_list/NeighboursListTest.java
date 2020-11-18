@@ -59,6 +59,7 @@ public class NeighboursListTest {
 
     @Before
     public void setUp() {
+        //ON SETUP LES ELEMENTS QUI VONT ETRE NECESSAIRES (ACTIVITE LISTNEIGHBOURACTIVITY, INJECTION DE L'API, RECUPERATION DE LA LISTE DE VOISINS...)
         mActivity = mActivityRule.getActivity();
         assertThat(mActivity, notNullValue());
         mService = DI.getNeighbourApiService();
@@ -93,19 +94,26 @@ public class NeighboursListTest {
     @Test
     public void myNeighboursList_OnclickItem_shouldOpenDetailActivity() {
 
+        // ON RECUPERE LA LISTE VISUELLEMENT AVEC L'XML DU FRAGMENT
         onView(withId(R.id.list_neighbours))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, click()));
+        // ON SIMULE UN CLIQUE SUR UNE DES CELLULES DE LA LISTE
 
+        // ON RECUPURE VISUELLEMENT LE NOM DU VOISIN DE LA CELLULE QUE L'ON VIENT DE CLIQUE AVEC L'ID DE L'ELEMENT TEXT VIEW QUI DOIT AFFICHER LE NOM DU VOISINS
         onView(withId(R.id.nameTextView))
                 .check(matches(isDisplayed()));
+        // ON VERIFIE QUE LE BON NOM EST AFFICHE
     }
 
     @Test
     public void myNeighbour_FavoriteOnClickItem_active() {
 
+        // ON RECUPERE LA LISTE VISUELLEMENT AVEC L'XML DU FRAGMENT
         onView(withId(R.id.list_neighbours))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, click()));
+        // ON SIMULE UN CLIQUE SUR UNE DES CELLULES
 
+        // ON EST DANS LE DETAIL DU VOISIN DE LA CELLULE SUR LAQUELLE ON A CLIQUE, ON SIMULE UN CLICK SUR LE BOUTON FAVORIS AVEC L'ID DE LELEMENT BUTTON DE LACTIVITE DETAIL
         onView(withId(R.id.favoriteButton))
                 .perform(click());
 

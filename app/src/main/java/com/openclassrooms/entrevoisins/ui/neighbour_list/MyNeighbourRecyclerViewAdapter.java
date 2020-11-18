@@ -60,21 +60,19 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             }
         });
 
-// CLIQUE SUR LE NOM POUR ALLER AU PROFIL DU VOISIN : FAIT
-
         holder.neighbourItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(mContext, DetailsNeighbourActivity.class);
-                //intent.putExtra("neighbourPosition", position);
-                //mContext.startActivity(intent);
+                // CETTE METHODE ON CLICK PERMET DE PASSER AU DETAIL DU VOISIN
+                // SUR LEQUEL ON A CLIQUE ( UNE DES CELLULES )
+                // ICI ON VA PASSER UN INTENT A UNE AUTRE ACTIVITE (DETAILS)
+                // IL CONTIENT LA POSITION DU VOISIN SUR LEQUEL ON A CLIQUE
+                // C EST EN FAITE L'ID DU VOISIN
 
                 Intent intent = new Intent(v.getContext(), DetailsNeighbourActivity.class);
                 intent.putExtra("neighbourPosition", position);
                 v.getContext().startActivity(intent);
 
-                //ECRIRE L'INTENT POUR ALLER A L'ACTIVITE SUIVANTE ET PASSER LE VOISIN
-                //mNeighbourIdService.gotoNeighbourId(neighbour);
             }
         });
 
