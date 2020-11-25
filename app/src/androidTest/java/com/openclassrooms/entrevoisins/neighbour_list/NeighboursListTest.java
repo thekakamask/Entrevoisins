@@ -23,17 +23,20 @@ import java.util.List;
 import butterknife.OnClick;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBackUnconditionally;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.pressBack;
 import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.StringEndsWith.endsWith;
 
@@ -86,7 +89,7 @@ public class NeighboursListTest {
         onView(withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT));
         // When perform a click on a delete icon
         onView(withId(R.id.list_neighbours))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
+                .perform(actionOnItemAtPosition(1, new DeleteViewAction()));
         // Then : the number of element is 11
         onView(withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
     }
@@ -96,10 +99,10 @@ public class NeighboursListTest {
 
         // ON RECUPERE LA LISTE VISUELLEMENT AVEC L'XML DU FRAGMENT
         onView(withId(R.id.list_neighbours))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, click()));
+                .perform(actionOnItemAtPosition(POSITION_ITEM, click()));
         // ON SIMULE UN CLIQUE SUR UNE DES CELLULES DE LA LISTE
 
-        // ON RECUPURE VISUELLEMENT LE NOM DU VOISIN DE LA CELLULE QUE L'ON VIENT DE CLIQUE AVEC L'ID DE L'ELEMENT TEXT VIEW QUI DOIT AFFICHER LE NOM DU VOISINS
+        // ON RECUPURE VISUELLEMENT LE NOM DU VOISIN DE LA CELLULE QUE L'ON VIENT DE CLIQUE AVEC L'ID DE L'ELEMENT TEXT VIEW QUI DOIT AFFICHER LE NOM DU VOISIN
         onView(withId(R.id.nameTextView))
                 .check(matches(isDisplayed()));
         // ON VERIFIE QUE LE BON NOM EST AFFICHE
@@ -110,46 +113,37 @@ public class NeighboursListTest {
 
         // ON RECUPERE LA LISTE VISUELLEMENT AVEC L'XML DU FRAGMENT
         onView(withId(R.id.list_neighbours))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, click()));
+                .perform(actionOnItemAtPosition(POSITION_ITEM, click()));
         // ON SIMULE UN CLIQUE SUR UNE DES CELLULES
 
         // ON EST DANS LE DETAIL DU VOISIN DE LA CELLULE SUR LAQUELLE ON A CLIQUE, ON SIMULE UN CLICK SUR LE BOUTON FAVORIS AVEC L'ID DE LELEMENT BUTTON DE LACTIVITE DETAIL
         onView(withId(R.id.favoriteButton))
                 .perform(click());
 
-        pressBack();
-        swipeLeft();
-        click();
+        pressBackUnconditionally();
 
         onView(withId(R.id.list_neighbours))
-                .check(withItemCount(1));
+                .perform(actionOnItemAtPosition(2, click()));
+        // ON SIMULE UN CLIQUE SUR UNE DES CELLULES
 
+        // ON EST DANS LE DETAIL DU VOISIN DE LA CELLULE SUR LAQUELLE ON A CLIQUE, ON SIMULE UN CLICK SUR LE BOUTON FAVORIS AVEC L'ID DE LELEMENT BUTTON DE LACTIVITE DETAIL
+        onView(withId(R.id.favoriteButton))
+                .perform(click());
+
+        pressBackUnconditionally();
+        onView(withText("FAVORITES")).perform(click());
+
+        /*swipeLeft();*/
+
+        /*onView(withId(R.id.list_neighbours2))
+                .perform(actionOnItemAtPosition(0, click()));*/
+
+        onView(allOf(withId(R.id.list_neighbours2),isDisplayed())).perform(actionOnItemAtPosition(0, click()));
+
+
+        onView(withId(R.id.nameTextView))
+                .check(matches(withText("Caroline")));
 
     }
-
-    /*@Test
-    public void myNeighbour_DeleteFavoriteOnClickItem_active() {
-
-        onView(withId(R.id.list_neighbours))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, click()));
-
-        onView(withId(R.id.favoriteButton))
-                .perform(click());
-        onView(withId(R.id.favoriteButton))
-                .perform(click());
-
-        pressBack();
-
-        onView(withText("Favorites"))
-                .perform(click());
-
-        onView(withId(R.id.list_neighbours))
-                .check(withItemCount(0));
-
-    }*/
-
-    // DERNIER TEST : VERIFIER QUE LE FAVORI SE SUPPRIME BIEN
-    //COMMENTAIRE SUR CHAQUE CHANGEMENT QUE JAI FAIT DANS LES TEST ET DANS LE CODE SOURCE
-    // READ ME : FAIRE COMME EXEMPLE
 
 }

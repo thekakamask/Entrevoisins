@@ -15,6 +15,7 @@ import org.junit.runners.JUnit4;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -74,6 +75,9 @@ public class NeighbourServiceTest {
         assertTrue(service.getNeighbours().contains(neighbourToAdd));
     }
 
+
+
+
     // VERIFIER QUE LES FAVORIS S'AJOUTENT BIEN A LA LISTE QUI LEURS CORRESPONDENT
     @Test
     public void addFavNeighbour() {
@@ -96,16 +100,6 @@ public class NeighbourServiceTest {
         // JE VERIFIE QUE LA LISTE DE FAVORIS CONTIENT NOTRE VOISINS
         assertTrue(service.getFavoriteNeighbours().contains(neighbourFavToAdd));
 
-
-
-        /*if (neighbourFavToAdd.getFavoris()) {
-            service.deleteNeighbour(neighbourFavToAdd);
-            neighbour.setFavoris(false);
-            service.createNeighbour(neighbourFavToAdd);
-        } else  {*/
-
-        //tjr pas sur QUE LE neighbourfavtodel sajoute bien a la liste favoris vu quil nest pas en parametre
-        //details.clickFavButton();
     }
 
     // VERIFIER QUE LES FAVORIS SE SUPPRIMENT BIEN DE LEURS LISTE CORRESPONDANTE
@@ -160,4 +154,8 @@ public class NeighbourServiceTest {
 
 
     }
+
+
+
+
 }

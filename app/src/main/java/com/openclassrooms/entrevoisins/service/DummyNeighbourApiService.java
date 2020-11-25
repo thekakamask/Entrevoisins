@@ -22,7 +22,6 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     public List<Neighbour> getNeighbours() {
         return neighbours;
     }
-    //public List<Neighbour> getFavNeighbours() { return favNeighbours; }
 
     @Override
     public List<Neighbour> getFavoriteNeighbours() {
@@ -45,7 +44,6 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     public void deleteNeighbour(Neighbour neighbour) {
         neighbours.remove(neighbour);
     }
-    //public void deleteFavNeighbour(Neighbour neighbour) {favNeighbours.remove(neighbour); }
 
     /**
      * {@inheritDoc}
@@ -58,37 +56,17 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     }
 
     @Override
+    public void createSpecialNeighbour(Neighbour neighbour, int position) {
+        neighbours.add(position, neighbour);
+    }
+
+    @Override
     public Neighbour getNeighbourByPosition(int position) {
         return neighbours.get(position);
     }
 
-   /* @Override
-    public void addNeighbourFavoris(Neighbour neighbour) {
-        //neighbours.get(neighbours.indexOf(neighbour)).setFavoris(!neighbour.getFavoris());
-
-        favNeighbours.add(neighbour);
-    }*/
-
-
-    //@Override
-   // public long getNeighbourById(Neighbour neighbour) {
-     //   return id;
-   // }
-
-
-    //@Override
-    //public void removeNeighbourFavoris(Neighbour neighbour) {
-
-   // }
-
-   // @Override
-   // public Boolean isFavoris(Neighbour neighbour) {
-
-   // }
-
-    //@Override
-   // public List<Neighbour> getFavorisNeighbours() {
-
-   // }
-
+    @Override
+    public void setFavorisNeighbourByPostion(int position) {
+        neighbours.get(position).setFavoris(!neighbours.get(position).getFavoris());
+    }
 }

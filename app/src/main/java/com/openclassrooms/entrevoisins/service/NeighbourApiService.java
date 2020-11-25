@@ -26,7 +26,6 @@ public interface NeighbourApiService {
      * @param neighbour
      */
     void deleteNeighbour(Neighbour neighbour);
-    //void deleteFavNeighbour(Neighbour neighbour);
 
     /**
      * Create a neighbour
@@ -34,15 +33,11 @@ public interface NeighbourApiService {
      */
     void createNeighbour(Neighbour neighbour);
 
+    void createSpecialNeighbour(Neighbour neighbour, int position);
+
     // AJOUTER UNE NOUVELLE METHODE QUI RETOURNE UN NEIGHBOUR EN FONCTION DE SON ID DANS LE MODEL: GetNeighbourById
 
     Neighbour getNeighbourByPosition (int position);
 
-    //void removeNeighbourFavoris(Neighbour neighbour);
-
-    //Void addNeighbourFavoris(Neighbour neighbour);
-
-    //void deleteFavNeighbour(Neighbour neighbour);
-
-    //List<Neighbour> getFavorisNeighbours();
+    void setFavorisNeighbourByPostion(int position);
 }

@@ -74,6 +74,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
     private NeighbourApiService mApiService;
     private String mNeighbourImage;
     private Neighbour mNeighbour;
+    private int mPosition;
 
 
 
@@ -100,8 +101,13 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 
     private void getNeighbour() {
         Intent intent = getIntent();
-        int position = intent.getIntExtra("neighbourPosition", 0);
-        mNeighbour = mApiService.getNeighbourByPosition(position);
+        mPosition = intent.getIntExtra("neighbourPosition", 0);
+        String mFragment = intent.getStringExtra("mFragment");
+        if (mFragment.equals("1erFragment")) {
+            mNeighbour = mApiService.getNeighbourByPosition(mPosition);
+        } else {
+            mNeighbour = mApiService.getFavoriteNeighbours().get(mPosition);
+        }
     }
 
 
@@ -127,13 +133,15 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
     public void clickFavButton() {
 
         if (mNeighbour.getFavoris()) {
-            mApiService.deleteNeighbour(mNeighbour);
+            /*mApiService.deleteNeighbour(mNeighbour);
             mNeighbour.setFavoris(false);
-            mApiService.createNeighbour(mNeighbour);
+            mApiService.createSpecialNeighbour(mNeighbour, mPosition);*/
+            mApiService.setFavorisNeighbourByPostion(mPosition);
         } else  {
-            mApiService.deleteNeighbour(mNeighbour);
+            /*mApiService.deleteNeighbour(mNeighbour);
             mNeighbour.setFavoris(true);
-            mApiService.createNeighbour(mNeighbour);
+            mApiService.createSpecialNeighbour(mNeighbour, mPosition);*/
+            mApiService.setFavorisNeighbourByPostion(mPosition);
         }
         configureFavButton();
     }

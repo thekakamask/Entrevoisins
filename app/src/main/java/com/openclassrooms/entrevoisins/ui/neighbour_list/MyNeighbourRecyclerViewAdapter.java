@@ -30,10 +30,12 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
     private final List<Neighbour> mNeighbours;
     // DECLARATION DE L'INTERFACE
     private Context mContext;
+    private String mFragment;
 
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items) {
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, String mFragment) {
         this.mNeighbours = items;
+        this.mFragment = mFragment;
     }
 
 
@@ -71,7 +73,10 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
                 Intent intent = new Intent(v.getContext(), DetailsNeighbourActivity.class);
                 intent.putExtra("neighbourPosition", position);
+                intent.putExtra("mFragment", mFragment);
                 v.getContext().startActivity(intent);
+
+
 
             }
         });
