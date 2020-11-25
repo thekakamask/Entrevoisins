@@ -3,7 +3,7 @@
 ## **1 -** Télécharger où cloner le projet 
 Depuis l'adresse Github **https://github.com/thekakamask/EntreVoisins/**.
 Et cliquez sur le boutton clone or download:
-![Screenshot](screenshot.png)
+![Screenshot](screenshot.PNG)
 
 ## **2 -** Si besoin Télécharger Android Studio 
 Télécharger Android Studio à l'adresse **https://developer.android.com/studio/?gclid=CjwKCAjwzdLrBRBiEiwAEHrAYlRMK-F1MuL4YASq_n9WskOl4XbUKdjzOv3SHLzIaZGrU4y5lzN5uhoCe38QAvD_BwE.**
@@ -13,7 +13,7 @@ Cliquez sur "Check out project from version control" et selectionnez Git :
 ![Screenshot](screenshot2.png)
 
 ## **4 -** Collez l'Url précédemment cloné et cliquer sur clone.
-![Screenshot](screenshot3.png)
+![Screenshot](screenshot3.PNG)
 
 ## **5 -** Attendre la fin de la compilation du projet Android. 
 Ceci peut prendre quelque minutes...
